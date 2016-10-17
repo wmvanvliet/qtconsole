@@ -883,7 +883,7 @@ class ConsoleWidget(MetaQObjectHasTraits('NewBase', (LoggingConfigurable, superQ
         cursor = self._control.textCursor()
         if before_prompt and (self._reading or not self._executing):
             self._flush_pending_stream()
-            cursor.setPosition(self._get_append_before_prompt_pos())
+            cursor.setPosition(self._append_before_prompt_pos)
         else:
             if insert != self._insert_plain_text:
                 self._flush_pending_stream()
@@ -1673,18 +1673,16 @@ class ConsoleWidget(MetaQObjectHasTraits('NewBase', (LoggingConfigurable, superQ
         return len(text) - len(text.lstrip())
 
     
-    def _get_prompt_pos(self):
+    @property
+    def _prompt_pos(self):
         """Find the position in the text right after the prompt"""
         return min(self._prompt_cursor.position() + 1, self._get_end_pos())
 
-    _prompt_pos = property(_get_prompt_pos)
-
-    def _get_append_before_prompt_pos(self):
+    @property
+    def _append_before_prompt_pos(self):
         """Find the position in the text right before the prompt"""
         return min(self._append_before_prompt_cursor.position(),
                    self._get_end_pos())
-
-    _append_before_prompt_pos = property(_get_append_before_prompt_pos)
 
     def _get_prompt_cursor(self):
         """ Convenience method that returns a cursor for the prompt position.
