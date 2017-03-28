@@ -11,8 +11,45 @@ Changes in Jupyter Qt console
 `4.3 on GitHub <https://github.com/jupyter/qtconsole/milestones/4.3>`__
 
 - Rename `ConsoleWidget.width/height` traits to `console_width/console_height`
-  to avoid a name clash with the `QWidget` properties.
-  WARNING: possibly, but unlikely code-breaking.
+  to avoid a name clash with the `QWidget` properties. Note: the name change
+  could be, in rare cases if a name collision exists, a code-breaking
+  change.
+
+Additions
+~~~~~~~~~
+- Add :kbd:`Shift-Tab` shortcut to unindent text
+- Add :kbd:`Control-R` shortcut to rename the current tab
+- Add :kbd:`Alt-R` shortcut to set the main window title
+- Add :kbd:`Command-Alt-Left` and :kbd:`Command-Alt-Right` shortcut to switch
+  tabs on macOS
+- Add support for PySide2
+- Add support for Python 3.5
+- Add support for 24 bit ANSI color codes
+- Add option to create new tab connected to the existing kernel
+
+Changes
+~~~~~~~
+- Change :kbd:`Tab` key behavior to always indent to the next increment of 4 spaces
+- Change :kbd:`Home` key behavior to alternate cursor between the beginning of text
+  (ignoring leading spaces) and beginning of the line
+- Improve documentation of various options and clarified the docs in some places
+- Move documentation to ReadTheDocs
+
+Fixes
+~~~~~
+- Fix automatic indentation of new lines that are inserted in the middle of a
+  cell
+- Fix regression where prompt would never be shown for `--existing` consoles
+- Fix `python.exe -m qtconsole` on Windows
+- Fix showing error messages when running a script using `%run`
+- Fix `invalid cursor position` error and subsequent freezing of user input
+- Fix syntax coloring when attaching to non-IPython kernels
+- Fix printing when using QT5
+- Fix :kbd:`Control-K` shortcut (delete until end of line) on macOS
+- Fix history browsing (:kbd:`Up`/:kbd:`Down` keys) when lines are longer than
+  the terminal width
+- Fix saving HTML with inline PNG for Python 3
+- Various internal bugfixes
 
 .. _4.2:
 
