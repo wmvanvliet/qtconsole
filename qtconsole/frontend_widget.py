@@ -239,8 +239,8 @@ class FrontendWidget(HistoryConsoleWidget, BaseFrontendMixin):
             if text:
                 # Remove prompts.
                 lines = text.splitlines()
-                lines = map(self.transform_classic_prompt, lines)
-                lines = map(self.transform_ipy_prompt, lines)
+                lines = map(self._highlighter.transform_classic_prompt, lines)
+                lines = map(self._highlighter.transform_ipy_prompt, lines)
                 text = '\n'.join(lines)
                 was_newline = text[-1] == '\n'
                 if was_newline:  # user doesn't need newline
