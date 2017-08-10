@@ -45,7 +45,7 @@ class TestJupyterWidget(unittest.TestCase):
         w = JupyterWidget(kind='rich')
         w._append_plain_text('Header\n')
         w._show_interpreter_prompt(1)
-        w.other_output_prefix = '[other] '
+        w.other_output_prefix = '[remote] '
         w.syntax_style = 'default'
         control = w._control
         document = control.document()
